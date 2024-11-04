@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { auth, signOut } from "@/auth";
 
+import { auth, signOut } from "@/auth";
+import QuestionCard from "@/components/cards/QuestionCard";
+import HomeFilter from "@/components/filters/HomeFilter";
+import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
-import LocalSearch from "@/components/search/LocalSearch";
-import HomeFilter from "@/components/filters/HomeFilter";
-import QuestionCard from "@/components/cards/QuestionCard";
 
 const questions = [
   {
