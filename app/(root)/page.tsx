@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { auth, signOut } from "@/auth";
 import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
@@ -52,8 +51,6 @@ interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 const Home = async ({ searchParams }: SearchParams) => {
-  const session = await auth();
-
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) => {
@@ -92,20 +89,6 @@ const Home = async ({ searchParams }: SearchParams) => {
           <QuestionCard key={question._id} question={question} />
         ))}
       </div>
-      {session ? (
-        <form
-          className="px-10 pt-[100px]"
-          action={async () => {
-            "use server";
-
-            await signOut({ redirectTo: ROUTES.SIGN_IN });
-          }}
-        >
-          <Button type="submit">Log out</Button>
-        </form>
-      ) : (
-        <></>
-      )}{" "}
     </>
   );
 };
